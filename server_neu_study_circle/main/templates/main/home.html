@@ -1,0 +1,22 @@
+{% extends 'encasplator.html' %}
+
+{% block content %}
+
+<div>
+
+    <h1>All Rooms</h1>
+    <div>
+        {% for room in rooms %}
+
+           <a href="{% url 'point' id=room.id %}">
+                <div>Room ID: {{room.id}}</div>
+                <div>{{room.header}}</div>
+           </a>
+            -----------------------------
+            
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
