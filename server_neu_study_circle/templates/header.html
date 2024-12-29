@@ -1,12 +1,13 @@
 <h1>NEU Study Circle</h1>
 
-<form method="GET" action="{% url 'home' %}">
+<form method="GET" action="{% url 'home' %}"> 
     <input type="text" name="query" placeholder="Search Rooms..."/>
     <button type="submit">Search</button>
 </form>
 
 
 {% if user.is_authenticated %}
+    <p>Hello {{user.username}}</p>
     <a href="{% url 'logout' %}">Logout</a>
 
 {% else %}
@@ -16,3 +17,14 @@
 
 <br>
 <br>
+
+<p>MESSAGE:</p>
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<p>-------------------------------------------------------------</p>

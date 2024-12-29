@@ -29,19 +29,13 @@
     <div>
         <form method="POST" action="">
             {% csrf_token %}
-
-            <label for="username">Username</label>
-            <input type="text" name="username">
-            
-            <label for="password">Password</label>
-            <input type="password" name="password">
-
+            {{form.as_p}}
             <button type="submit">Submit</button>
-
         </form>
 
         <p>Signed up?</p>
         <a href="{% url 'login' %}">Login</a>
+
 
         
     </div>

@@ -1,9 +1,49 @@
 {% extends 'encasplator.html' %}
 
 {% block content %}
+<div style="display: grid; grid-template-columns: 3fr 1fr;">
 
-room: {{room}}
-<br>
-room id:  {{room.id}}
+    <div>
+        <h1>room: {{room.header}}, room id:  {{room.id}} </h1>
+        <div>
+            <p>Chat</p>
+            <hr>
 
+            {% for message in room_messages %}
+                <div>
+                    <small>{{message.user}} {{message.created|timesince}} ago</small>
+                    <p>{{message.body}}</p>
+                </div>
+                <hr>
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% if user.is_authenticated %}
+        <div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" name="body" placeholder="Write message">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        {% endif %}
+
+        <hr>
+    </div>
+
+    <div>
+        <h3>Users</h3>
+        <div>
+            {% for user in users %}
+                <div>{{user.username}}</div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
