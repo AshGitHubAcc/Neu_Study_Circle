@@ -81,15 +81,16 @@ def home(req):
         Q(header__icontains=query) |
         Q(description__icontains=query)
     )
-
     topics = Topic.objects.all()
+    room_messages = Message.objects.all()
 
 
 
     context = {
         'rooms': rooms,
         'topics':topics,
-        'numOfRooms': rooms.count() 
+        'numOfRooms': rooms.count(),
+        'room_messages': room_messages
     }
     return render(req, 'home.html', context)
 
@@ -120,10 +121,6 @@ def single_room(req, id):
         )
 
         room.participants.add(req.user)
-        # context = {
-        #     'room': room,
-        #     'room_messages': room_messages
-        # }
         return redirect('room', id=id)
 
 
@@ -177,5 +174,24 @@ def delete_room(req, id):
         return render(req, 'delete.html', {'var': room})
     elif req.method == "POST":
         room.delete()
-        return redirect("/")
-            
+        return redirect("home")
+
+
+
+@login_required(login_url='login')
+def delete_message(req, id):
+
+    message = Message.objects.get(id=id)
+    if req.user != message.user:
+        return HttpResponse("Dont have acess")
+
+    if req.method == "GET":
+        return render(req, 'delete.html', {'var': message})
+    elif req.method == "POST":
+        message.delete()
+        return redirect("home")
+
+
+
+
+

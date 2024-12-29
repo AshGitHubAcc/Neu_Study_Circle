@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div style="display: grid; grid-template-columns: 1fr 7fr;" >
+<div style="display: grid; grid-template-columns: 1fr 7fr 2fr;" >
 
 
     <div style="width: 100px;">
@@ -48,9 +48,26 @@
                 <br>
             {% endif %}
 
-            -----------------------------
-            
+            <hr>            
         {% endfor %}
+    </div>
+
+
+    <div>
+        <h2>Recent Messages</h2>
+            {% for message in room_messages %}
+
+            <div>
+                <small>{{message.user}} {{message.created|timesince}}</small>
+                <br>
+                <small>replied to room: {{message.room}}</small>
+                <br>
+                <small>Message: {{message}}</small>
+
+            </div>
+            <hr>
+
+            {% endfor %}
     </div>
 </div>
 
