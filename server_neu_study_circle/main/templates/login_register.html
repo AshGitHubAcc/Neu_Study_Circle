@@ -1,0 +1,50 @@
+{% extends 'encasplator.html' %}
+
+
+{% block content %}
+
+
+{% if page == 'login' %}
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input type="text" name="username">
+            
+            <label for="password">Password</label>
+            <input type="password" name="password">
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+        <p>Not signed up?</p>
+        <a href="{% url 'register' %}">Sign up</a>
+
+    </div>
+
+{% elif page == 'register' %}
+
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input type="text" name="username">
+            
+            <label for="password">Password</label>
+            <input type="password" name="password">
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+        <p>Signed up?</p>
+        <a href="{% url 'login' %}">Login</a>
+
+        
+    </div>
+{% endif %}
+
+{% endblock %}

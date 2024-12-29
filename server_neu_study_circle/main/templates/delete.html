@@ -1,0 +1,14 @@
+{% extends 'encasplator.html' %}
+
+
+{% block content %}
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <h3>Delete {{var}}</h3>
+    <div>
+        <input type="submit" value="Yes">
+        <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+    </div>
+</form>
+{% endblock %}
