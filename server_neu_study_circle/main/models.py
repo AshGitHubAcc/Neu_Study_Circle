@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth import User
-# Create your models here.
+from django.contrib.auth.models import User
 
 
 class Tag(models.Model):
@@ -11,7 +10,7 @@ class Tag(models.Model):
 
 class Room(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, nulll=True)
+    tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
     header = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     # participants = 
