@@ -6,15 +6,10 @@
 
 
     <div style="width: 100px;">
-
-        <h3>Topics</h3>
-
-        {% for topic in topics %}
-            <a href="{% url 'home'  %}?query={{topic.name}}">{{topic.name}}</a>
-            <br>
-        {% endfor %}
+        {% include 'topics.html' %}
     </div>
 
+   
 
 
     <div>
@@ -27,47 +22,14 @@
         <a href="{% url 'create_room' %}">Create a Room</a>
         <br>
         <br>
+        
+        {% include 'feed.html' %}
 
-        {% for room in rooms %}
-           <a href="room/{{room.id}}">
-                <div>Room ID: {{room.id}}</div>
-                <div>{{room.header}}</div>
-           </a>
-           
-
-
-           {% if user == room.host %}
-                <br>
-                <a href="{% url 'update_room' id=room.id %}">>>>>Update Room</a>
-                <br>
-                <br>
-                br>
-                <a href="{% url 'delete_room' id=room.id %}">>>>>Delete Room</a>
-    
-                <br>
-                <br>
-            {% endif %}
-
-            <hr>            
-        {% endfor %}
     </div>
 
 
     <div>
-        <h2>Recent Messages</h2>
-            {% for message in room_messages %}
-
-            <div>
-                <small>{{message.user}} {{message.created|timesince}}</small>
-                <br>
-                <small>replied to room: {{message.room}}</small>
-                <br>
-                <small>Message: {{message}}</small>
-
-            </div>
-            <hr>
-
-            {% endfor %}
+        {% include 'activity.html' %}
     </div>
 </div>
 

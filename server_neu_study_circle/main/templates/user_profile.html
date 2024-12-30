@@ -1,0 +1,22 @@
+{% extends "encasplator.html" %}
+
+{% block content %}
+<h1>Vewing {{visited_user.username}} profile</h1>
+
+<div style="display: grid; grid-template-columns: 1fr 4fr 1fr;">
+    <div>
+        {% include 'topics.html' %}
+
+    </div>  
+
+    <div>
+        {% include 'feed.html' %}
+
+    </div>
+    <div>
+        {% include 'activity.html' %}
+
+    </div>
+</div>
+{% endblock %}
+

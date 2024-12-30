@@ -82,9 +82,8 @@ def home(req):
         Q(description__icontains=query)
     )
     topics = Topic.objects.all()
-    room_messages = Message.objects.all()
-
-
+    room_messages = Message.objects.filter(Q(room__topic__name__icontains=query))
+    print('==================\n', room_messages)
 
     context = {
         'rooms': rooms,
@@ -137,7 +136,9 @@ def create_room(req):
     elif req.method == 'POST':
         form = RoomForm(req.POST)
         if form.is_valid():
-            form.save()
+            room = form.save(commit=False)
+            room.host = req.user
+            room.save()
             return redirect('/')
         else:
             print("=================Error=============")
@@ -192,6 +193,17 @@ def delete_message(req, id):
         return redirect("home")
 
 
+def profile(req, id):
 
+    visited_user = User.objects.get(id=id)
+    rooms = visited_user.room_set.all()
+    room_messages = visited_user.message_set.all()
+    topics = Topic.objects.all()
 
-
+    context = {
+        'visited_user': visited_user,
+        'rooms': rooms,
+        'room_messages': room_messages,
+        'topics': topics
+    }
+    return render(req, "user_profile.html", context)
