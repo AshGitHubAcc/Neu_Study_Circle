@@ -120,7 +120,7 @@ def single_room(req, id):
         )
 
         room.participants.add(req.user)
-        return redirect('room', id=id)
+        return redirect('room', id=id)FinFina
 
 
 
