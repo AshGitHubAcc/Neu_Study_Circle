@@ -1,10 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Spacer } from '@nextui-org/react'
+
 // pages
 import Home from './components/pages/Home'
+import Register from './components/pages/Register'
 
-// components
-import Header from "./components/Header"
 
 
 const itemStyles = {
@@ -18,12 +17,11 @@ function App() {
 
   return (
     <div className='h-[100vh]'>
-      <Header/>
-
 
       <Router>
         <Routes>
-          
+
+          <Route path="/register" element={<Register/>}/>
 
           <Route path="/home" element={<Home/>} />
 

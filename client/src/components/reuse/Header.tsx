@@ -1,5 +1,4 @@
-import React from "react";
-
+import { useState } from "react";
 import {
     Navbar,
     NavbarBrand,
@@ -13,7 +12,7 @@ import {
     Input,
 } from "@nextui-org/react";
 
-import logo from "../assets/new_logo.svg"
+import logo from "../../assets/new_logo.svg"
 
 
 export const SearchIcon = ({size = 24, strokeWidth = 1.5, width, height, ...props}) => {
@@ -49,7 +48,7 @@ export const SearchIcon = ({size = 24, strokeWidth = 1.5, width, height, ...prop
 
 
 export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
     "Profile",
